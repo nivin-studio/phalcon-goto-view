@@ -1,0 +1,89 @@
+{
+    "name": "phalcon-goto-view",
+    "displayName": "phalcon-goto-view",
+    "description": "Phalcon quick jump to view",
+    "version": "1.0.0",
+    "publisher": "nivin-studio",
+    "license": "MIT",
+    "icon": "images/icon.jpg",
+    "repository": "https://github.com/nivin-studio/phalcon-goto-view.git",
+    "engines": {
+        "vscode": "^1.52.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "keywords": [
+        "PHP",
+        "Phalcon"
+    ],
+    "activationEvents": [
+        "onLanguage:php"
+    ],
+    "contributes": {
+        "configuration": {
+            "type": "object",
+            "title": "Phalcon goto view configuration",
+            "properties": {
+                "phalcon-goto-view.quickJump": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Use 'Ctrl' or 'Alt' + click"
+                },
+                "phalcon-goto-view.maxLinesCount": {
+                    "type": "integer",
+                    "default": 666,
+                    "description": "Maximum number of scanning rows"
+                },
+                "phalcon-goto-view.regex": {
+                    "type": "string",
+                    "default": "(?<=function\\s*)([a-zA-Z_\\x7f-\\xff][a-zA-Z0-9_\\x7f-\\xff]*)(?=\\s*\\(\\s*(.*)\\))",
+                    "description": "Custom regex for matching strings"
+                },
+                "phalcon-goto-view.folders": {
+                    "type": "object",
+                    "default": {
+                        "default": "/app/views"
+                    },
+                    "items": {
+                        "type": "string"
+                    },
+                    "minItems": 1,
+                    "uniqueItems": true,
+                    "description": "Multiple folders"
+                },
+                "phalcon-goto-view.extensions": {
+                    "type": "array",
+                    "default": [
+                        ".html"
+                    ],
+                    "items": {
+                        "type": "string"
+                    },
+                    "minItems": 1,
+                    "uniqueItems": true,
+                    "description": "Multiple extensions"
+                }
+            }
+        }
+    },
+    "main": "./out/extension.js",
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "pretest": "npm run compile",
+        "test": "node ./out/test/runTest.js"
+    },
+    "devDependencies": {
+        "@types/glob": "^7.1.1",
+        "@types/mocha": "^5.2.7",
+        "@types/node": "^12.11.7",
+        "@types/vscode": "^1.52.0",
+        "glob": "^7.1.5",
+        "mocha": "^6.2.2",
+        "typescript": "^3.6.4",
+        "tslint": "^5.20.0",
+        "vscode-test": "^1.2.2"
+    }
+}
