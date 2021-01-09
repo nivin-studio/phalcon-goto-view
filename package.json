@@ -2,7 +2,7 @@
     "name": "phalcon-goto-view",
     "displayName": "phalcon-goto-view",
     "description": "Phalcon quick jump to view",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "publisher": "nivin-studio",
     "license": "MIT",
     "icon": "images/icon.jpg",
@@ -32,13 +32,31 @@
                 },
                 "phalcon-goto-view.maxLinesCount": {
                     "type": "integer",
-                    "default": 666,
+                    "default": 2000,
                     "description": "Maximum number of scanning rows"
                 },
                 "phalcon-goto-view.regex": {
-                    "type": "string",
-                    "default": "(?<=function\\s*)([a-zA-Z_\\x7f-\\xff][a-zA-Z0-9_\\x7f-\\xff]*)(?=\\s*\\(\\s*(.*)\\))",
-                    "description": "Custom regex for matching strings"
+                    "type": "object",
+                    "default": [
+                        {
+                            "name": "common",
+                            "value": "(?<=setTemplateAfter\\()(['\"])[^'\"]*\\1"
+                        },
+                        {
+                            "name": "template",
+                            "value": "(?<=pick\\(|render\\()(['\"])[^'\"]*\\1"
+                        },
+                        {
+                            "name": "function",
+                            "value": "(?<=function\\s*)([a-zA-Z_\\x7f-\\xff][a-zA-Z0-9_\\x7f-\\xff]*)"
+                        }
+                    ],
+                    "items": {
+                        "type": "string"
+                    },
+                    "minItems": 1,
+                    "uniqueItems": true,
+                    "description": "Multiple regex"
                 },
                 "phalcon-goto-view.folders": {
                     "type": "object",
@@ -55,7 +73,9 @@
                 "phalcon-goto-view.extensions": {
                     "type": "array",
                     "default": [
-                        ".html"
+                        ".html",
+                        ".volt",
+                        ".phtml"
                     ],
                     "items": {
                         "type": "string"

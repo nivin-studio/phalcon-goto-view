@@ -17,22 +17,28 @@ export default class HoverProvider implements vsHoverProvider {
         // 工作空间配置
         let workspaceConfig = workspace.getConfiguration('phalcon-goto-view');
         // 获取自定义正则表达式
-        let reg = new RegExp(workspaceConfig.regex);
-        // 获取正则匹配文字内容
-        let linkRange = doc.getWordRangeAtPosition(pos, reg);
-        if (!linkRange) {
-            return;
-        }
-        // 获取视图路径组
-        let viewPaths = util.getViewPaths(doc.getText(linkRange), doc);
-        if (viewPaths.length > 0) {
-            let text: string = "";
-            // 组装显示内容
-            for (let i in viewPaths) {
-                text += ` [${viewPaths[i].folder}](${viewPaths[i].fileUri})  \r`;
+        let regexArray = workspaceConfig.regex;
+        // 循环处理正则匹配规则
+        for (let regex of regexArray) {
+            // 获取正则匹配文字内容
+            let reg = new RegExp(regex.value);
+            let linkRange = doc.getWordRangeAtPosition(pos, reg);
+            if (!linkRange) {
+                continue;
             }
 
-            return new Hover(new MarkdownString(text));
+            let linkText = doc.getText(linkRange).replace(/\"|\'/g, '').replace(/\./g, '/').replace('Action', '');
+            // 获取视图路径组
+            let viewPaths = util.getViewPaths(regex.name, linkText, doc);
+            if (viewPaths.length > 0) {
+                let text: string = "";
+                // 组装显示内容
+                for (let i in viewPaths) {
+                    text += ` [${viewPaths[i].folder}](${viewPaths[i].fileUri})  \r`;
+                }
+
+                return new Hover(new MarkdownString(text));
+            }
         }
     }
 }

@@ -16,8 +16,8 @@ import * as path from "path";
  * @param text 
  * @param doc 
  */
-export function getViewPath(text: string, doc: TextDocument) {
-    let viewPaths = getViewPaths(text, doc);
+export function getViewPath(type: string, text: string, doc: TextDocument) {
+    let viewPaths = getViewPaths(type, text, doc);
     return viewPaths.length > 0 ? viewPaths[0] : null;
 }
 
@@ -27,7 +27,7 @@ export function getViewPath(text: string, doc: TextDocument) {
  * @param text 
  * @param doc 
  */
-export function getViewPaths(text: string, doc: TextDocument) {
+export function getViewPaths(type: string, text: string, doc: TextDocument) {
     // 工作空间目录
     let workspaceFolder = workspace.getWorkspaceFolder(doc.uri)?.uri.fsPath;
     // 工作空间配置
@@ -38,12 +38,21 @@ export function getViewPaths(text: string, doc: TextDocument) {
     let viewPaths = [];
 
     for (let item in viewFolders) {
-        // 获取控制器名称
-        let controllerName = getControllerName(doc);
-        // 获取方法名称
-        let functionName = getFunctionName(text);
+
+        let oneSection = '';
+        let twoSection = text.charAt(0) === '/' ? text : `/${text}`;
+
+        switch (type) {
+            case 'common':
+                oneSection = '/layouts';
+                break;
+            case 'function':
+                oneSection = `/${getControllerName(doc)}`;
+                break;
+        }
+
         // 试图文件目录
-        let viewFolder = viewFolders[item] + `/${controllerName}` + `/${functionName}`;
+        let viewFolder = viewFolders[item] + oneSection + twoSection;
         // 工作空间配置扩展名组
         for (let extension of workspaceConfig.extensions) {
             // 试图文件路径
@@ -99,15 +108,6 @@ function getControllerName(doc: TextDocument): string {
     }
 
     return '';
-}
-
-/**
- * 获取方法名称
- * 
- * @param text 
- */
-function getFunctionName(text: string): string {
-    return text.replace('Action', '');
 }
 
 /**
