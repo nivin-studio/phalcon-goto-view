@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.1.2
+
+- fix:regex configuration
+
 ## 1.1.1
 
 - fix:regex configuration
