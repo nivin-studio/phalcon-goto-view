@@ -2,7 +2,7 @@
     "name": "phalcon-goto-view",
     "displayName": "phalcon-goto-view",
     "description": "Phalcon quick jump to view",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "publisher": "nivin-studio",
     "license": "MIT",
     "icon": "images/icon.jpg",
