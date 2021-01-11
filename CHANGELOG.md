@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.1.4
+
+- update: readme.md
+
 ## 1.1.3
 
 - add: 'setTemplateBefore' regex for matching

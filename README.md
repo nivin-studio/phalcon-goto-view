@@ -29,25 +29,26 @@ Maximum number of scanning rows.
 
 Custom regex for matching strings.
 
-"common": Regex for matching $this->view->setTemplateAfter() function
+"action": Regex for matching Action function
+
+"common": Regex for matching $this->view->setTemplateAfter() and $this->view->setTemplateBefore() function
 
 "template": Regex for matching $this->view->pick() and $this->view->render() function
 
-"function": Regex for matching Action function
 
 ```json
 "phalcon-goto-view.regex": [
     {
+        "name": "action",
+        "value": "(?<=function\\s*)([a-zA-Z_\\x7f-\\xff][a-zA-Z0-9_\\x7f-\\xff]*)"
+    },
+    {
         "name": "common",
-        "value": "(?<=setTemplateAfter\\()(['\"])[^'\"]*\\1"
+        "value": "(?<=setTemplateAfter\\(|setTemplateBefore\\()(['\"])[^'\"]*\\1"
     },
     {
         "name": "template",
         "value": "(?<=pick\\(|render\\()(['\"])[^'\"]*\\1"
-    },
-    {
-        "name": "function",
-        "value": "(?<=function\\s*)([a-zA-Z_\\x7f-\\xff][a-zA-Z0-9_\\x7f-\\xff]*)"
     }
 ]
 
