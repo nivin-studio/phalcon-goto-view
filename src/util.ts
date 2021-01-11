@@ -37,17 +37,19 @@ export function getViewPaths(type: string, text: string, doc: TextDocument) {
     // 试图文件路径组
     let viewPaths = [];
 
+    text = text.replace('Action', '');
+
     for (let item in viewFolders) {
 
         let oneSection = '';
         let twoSection = text.charAt(0) === '/' ? text : `/${text}`;
 
         switch (type) {
+            case 'action':
+                oneSection = `/${getControllerName(doc)}`;
+                break;
             case 'common':
                 oneSection = '/layouts';
-                break;
-            case 'function':
-                oneSection = `/${getControllerName(doc)}`;
                 break;
         }
 

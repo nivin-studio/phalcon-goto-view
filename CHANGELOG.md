@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.1.3
+
+- add: 'setTemplateBefore' regex for matching
+
 ## 1.1.2
 
 - fix:regex configuration

@@ -1,5 +1,9 @@
 ![phalcon-goto-view](https://socialify.git.ci/nivin-studio/phalcon-goto-view/image?description=1&font=Inter&logo=https%3A%2F%2Fwww.nivin.cn%2Fimages%2Flogo.png&pattern=Signal&theme=Light)
 
+# How to use
+
+![How to use](images/use.gif)
+
 # Settings
 
 ## quickJump

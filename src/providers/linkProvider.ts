@@ -41,7 +41,7 @@ export default class LinkProvider implements DocumentLinkProvider {
                     continue;
                 }
 
-                let match = matchArray[0].replace(/\"|\'/g, '').replace(/\./g, '/').replace('Action', '');
+                let match = matchArray[0].replace(/\"|\'/g, '').replace(/\./g, '/');
                 // 获取视图路径
                 let viewPath = util.getViewPath(regex.name, match, doc);
                 if (viewPath === null) {
