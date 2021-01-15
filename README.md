@@ -76,3 +76,5 @@ Search views according to the configured extensions.
 ]
 ```
 
+# Thanks
++ [Laravel goto view](https://github.com/codingyu/laravel-goto-view)
