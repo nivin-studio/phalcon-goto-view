@@ -37,7 +37,7 @@ export function getViewPaths(type: string, text: string, doc: TextDocument) {
     // 试图文件路径组
     let viewPaths = [];
 
-    text = text.replace('Action', '');
+    text = text.replace('Action', '').replace('.volt', '');
 
     for (let item in viewFolders) {
 

@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.1.5
+
+- add: 'include' and 'extends' regex for matching
+
 ## 1.1.4
 
 - update: readme.md

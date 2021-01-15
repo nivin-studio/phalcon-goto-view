@@ -2,7 +2,7 @@
     "name": "phalcon-goto-view",
     "displayName": "phalcon-goto-view",
     "description": "Phalcon quick jump to view",
-    "version": "1.1.4",
+    "version": "1.1.5",
     "publisher": "nivin-studio",
     "license": "MIT",
     "icon": "images/icon.jpg",
@@ -18,9 +18,35 @@
         "Phalcon"
     ],
     "activationEvents": [
-        "onLanguage:php"
+        "onLanguage:php",
+        "onLanguage:volt",
+        "onLanguage:html",
+        "onLanguage:phtml"
     ],
     "contributes": {
+        "languages": [
+            {
+                "id": "volt",
+                "aliases": [
+                    "Volt (HTML)"
+                ],
+                "extensions": [
+                    ".volt",
+                    ".html.volt"
+                ],
+                "configuration": "./src/languages/volt.configuration.json"
+            },
+            {
+                "id": "phtml",
+                "aliases": [
+                    "Phtml (HTML)"
+                ],
+                "extensions": [
+                    ".phtml",
+                    ".html.phtml"
+                ]
+            }
+        ],
         "configuration": {
             "type": "object",
             "title": "Phalcon goto view configuration",
@@ -48,7 +74,7 @@
                         },
                         {
                             "name": "template",
-                            "value": "(?<=pick\\(|render\\()(['\"])[^'\"]*\\1"
+                            "value": "(?<=pick\\(|render\\(|partial\\(|include\\s*|extends\\s*)(['\"])[^'\"]*\\1"
                         }
                     ],
                     "items": {
